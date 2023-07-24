@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
 import Eventitem from "./Eventitem";
 import { fetcher } from "./SwrHelper";
+import { useDispatch } from "react-redux";
 
 export default function Eventlist() {
-  const { data } = useSWR("http://localhost:3333/events", fetcher);
+  const { data, error } = useSWR("http://localhost:3333/events", fetcher);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) {
+      dispatch({ type: "ERROR_SET", error: error });
+    }
+  }, [error]);
 
   if (!data) {
     return (

@@ -5,11 +5,13 @@ import Header from "./Header";
 import Eventlist from "./Eventlist";
 import Shoppingcart from "./Shoppingcart";
 import Confirmation from "./Confirmation";
+import ErrorBanner from "./ErrorBanner";
 
 function App() {
   return (
    <Router>
       <Header />
+      <ErrorBanner />
       <Route exact path="/" component={Eventlist} />
       <Route exact path="/cart" component={Shoppingcart} />
       <Route exact path="/confirm" component={Confirmation} />
