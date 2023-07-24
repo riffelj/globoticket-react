@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
@@ -12,7 +12,9 @@ function App() {
    <Router>
       <Header />
       <ErrorBoundary fallback={<div className="mt-5 ms-5">Error!</div>}>
-        <Route exact path="/" component={Eventlist} />
+        <Suspense fallback={<div className="mt-5 ms-5">Loading data ...</div>}>
+          <Route exact path="/" component={Eventlist} />
+        </Suspense>
       </ErrorBoundary>
       <Route exact path="/cart" component={Shoppingcart} />
       <Route exact path="/confirm" component={Confirmation} />

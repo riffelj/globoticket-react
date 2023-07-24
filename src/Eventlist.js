@@ -4,16 +4,10 @@ import Eventitem from "./Eventitem";
 import { fetcher } from "./SwrHelper";
 
 export default function Eventlist() {
-  const { data, error } = useSWR("http://localhost:3333/events", fetcher);
+  const { data, error } = useSWR("http://localhost:3333/events", fetcher, { suspense: true });
 
   if (error) {
     throw error;
-  }
-
-  if (!data) {
-    return (
-      <div className="container mt-5">Loading ...</div>
-    );
   }
 
   return (
