@@ -5,14 +5,15 @@ import Header from "./Header";
 import Eventlist from "./Eventlist";
 import Shoppingcart from "./Shoppingcart";
 import Confirmation from "./Confirmation";
-import ErrorBanner from "./ErrorBanner";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   return (
    <Router>
       <Header />
-      <ErrorBanner />
-      <Route exact path="/" component={Eventlist} />
+      <ErrorBoundary fallback={<div className="mt-5 ms-5">Error!</div>}>
+        <Route exact path="/" component={Eventlist} />
+      </ErrorBoundary>
       <Route exact path="/cart" component={Shoppingcart} />
       <Route exact path="/confirm" component={Confirmation} />
    </Router>
